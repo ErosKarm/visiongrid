@@ -1,18 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
   chrome.storage.local.get({ bookmarks: [] }, function (result) {
-    var bookmarks = result.bookmarks;
-    var bookmarkContainer = document.getElementById("bookmarks");
+    const bookmarks = result.bookmarks;
+    const bookmarkContainer = document.getElementById("bookmarks");
 
     // Accumulate HTML strings for each bookmark
-    var allBookmarksHTML = "";
+    let allBookmarksHTML = "";
 
     bookmarks.forEach((bookmark) => {
-      const singleBookmark = `<div><div>${bookmark.title}</div><img class="bookmarkImage" src="${bookmark.image}" alt="${bookmark.title}"></div>`;
+      console.log(bookmark);
 
-      allBookmarksHTML += singleBookmark;
+      const singleBookmark = `
+      <div>
+          <img class="bookmarkImage" src="${bookmark.image}" alt="${
+        bookmark.title
+      }">
+
+
+        <div class="singleBookmark">
+        <ul class="bookmarksTagContainer">
+        ${bookmark.tags
+          .map((tag) => {
+            return `<li class="bookmarkTag">${tag}</li>`;
+          })
+          /* trunk-ignore(git-diff-check/error) */
+          .join(" ")} 
+          </ul>
+          <span>${bookmark.title}</span>
+          </div>
+      </div>`;
+
+      allBookmarksHTML += singleBookmark + " "; // Add a space between bookmarks
     });
 
     // Set the innerHTML once after the loop
-    bookmarkContainer.innerHTML = allBookmarksHTML;
+    bookmarkContainer.innerHTML = allBookmarksHTML.trim(); // Trim to remove trailing space
   });
 });

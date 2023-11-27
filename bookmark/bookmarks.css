@@ -19,9 +19,16 @@ body {
   gap: 10px;
 }
 
+.singleBookmark {
+  background-color: white;
+  padding: 10px;
+}
+
 .bookmarks {
+  margin: 80px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  gap: 140px;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .tag {
@@ -33,5 +40,22 @@ body {
 }
 
 .bookmarkImage {
-  width: 320px;
+  width: 520px;
+}
+
+.bookmarkTag {
+  background-color: rgb(241, 241, 241);
+  padding: 6px;
+  font-size: 12px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.bookmarksTagContainer {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+  padding-inline-start: 0px;
 }
