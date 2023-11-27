@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(240, 239, 236);
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background-color: rgb(228, 228, 228);
+  padding: 10px;
+  gap: 10px;
+}
+
+.bookmarks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.tag {
+  background-color: rgb(219, 219, 219);
+  border-radius: 5px;
+  padding: 7px;
+  border: none;
+  outline: none;
+}
+
+.bookmarkImage {
+  width: 320px;
+}
