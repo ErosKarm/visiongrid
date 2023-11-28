@@ -53,14 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
       return selectedTags.push(tag.textContent);
     });
 
-    console.log(selectedTags);
+    console.log(url);
 
     const websiteData = {
       id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
       title: title.value ? title.value : title.placeholder,
       tags: selectedTags,
       image: "",
-      URL: "",
+      URL: url,
     };
 
     // Capture the visible tab's image

@@ -23,6 +23,18 @@ body {
   background-color: rgb(91 33 182);
 }
 
+.logo {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerLogo {
+  width: 18px;
+  filter: brightness(0) invert(1);
+}
+
 .header h1 {
   font-size: 16px;
   font-weight: 500;

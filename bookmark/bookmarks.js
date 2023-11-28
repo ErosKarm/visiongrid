@@ -84,6 +84,8 @@ function renderBookmarks(bookmarks) {
   let allBookmarksHTML = "";
 
   bookmarks.forEach((bookmark) => {
+    console.log(bookmark);
+
     const singleBookmark = `
       <div>
         <img class="bookmarkImage" src="${bookmark.image}" alt="${
@@ -91,13 +93,13 @@ function renderBookmarks(bookmarks) {
     }">
         <div class="bookmarkHeaderSection">
           <span class="bookmarkTitle">${bookmark.title}</span>
-
-          <div>
-            <button class="bookmarkLinkBtn">Link</button>
-
-          <button class="bookmarkDeleteBtn" data-id="${
-            bookmark.id
-          }">Delete</button>
+          <div class="bookmarkActionContainer">
+            <a href="${bookmark.URL}" class="bookmarkLinkBtn">
+              <image src="/icons/link.png" alt="link icon" />
+            </a>
+            <button class="bookmarkDeleteBtn" data-id="${bookmark.id}">
+              <image src="/icons/delete.png" alt="delete icon" />
+            </button>
           </div>
         </div>
         <div class="bookmarkDivider"></div>
