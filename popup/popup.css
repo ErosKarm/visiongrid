@@ -110,3 +110,15 @@ body {
 #bookmarkBtn:hover {
   background-color: rgb(71, 21, 150);
 }
+
+/* Error message */
+
+.error {
+  color: red;
+  margin-top: 15px;
+}
+
+.success {
+  color: green;
+  margin-top: 15px;
+}

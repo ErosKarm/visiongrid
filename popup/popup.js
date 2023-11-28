@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     const currentWebsiteURL = tabs[0].url;
     const currentWebsiteTitle = tabs[0].title;
-
     chrome.tabs.captureVisibleTab({ format: "png" }, function (screenshotUrl) {
       captureScreenshot(screenshotUrl);
     });
@@ -40,7 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const handleBookmark = () => {
     if (document.querySelectorAll(".active").length <= 0) {
-      console.log("please select atlest 1 tag");
+      const error = document.createElement("span");
+      error.textContent = "Please select at least one tag";
+      error.classList.add("error");
+
+      document.querySelector(".websiteInfo").appendChild(error);
+
       return;
     }
 
@@ -53,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const websiteData = {
       id: Math.floor(Math.random() * Math.floor(Math.random() * Date.now())),
-      title: title.placeholder,
+      title: title.value ? title.value : title.placeholder,
       tags: selectedTags,
       image: "",
       URL: "",
@@ -62,7 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Capture the visible tab's image
     chrome.tabs.captureVisibleTab({ format: "png" }, function (screenshotUrl) {
       websiteData.image = screenshotUrl;
-
       saveToStorage(websiteData);
     });
 
@@ -76,6 +79,19 @@ document.addEventListener("DOMContentLoaded", function () {
         chrome.storage.local.set({ bookmarks: bookmarks }, function () {
           console.log("Bookmark saved:", data);
         });
+
+        // Remove the error tag if it exists and replace it with success message
+
+        const error = document.querySelector(".error");
+        if (error) {
+          error.remove();
+        }
+
+        const success = document.createElement("span");
+        success.textContent = "Bookmark saved successfully!";
+        success.classList.add("success");
+
+        document.querySelector(".websiteInfo").appendChild(success);
       });
     };
   };
@@ -93,7 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function captureScreenshot(screenshotUrl) {
   const imageElement = document.createElement("img");
-  imageElement.src = screenshotUrl;
   imageElement.src = screenshotUrl;
   imageElement.style.width = "100%";
   imageElement.style.height = "auto";
